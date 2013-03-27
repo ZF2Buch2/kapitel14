@@ -1,0 +1,74 @@
+<?php 
+/**
+ * ZF2 Buch Kapitel 14
+ * 
+ * Das Buch "Zend Framework 2 - Von den Grundlagen bis zur fertigen Anwendung"
+ * von Ralf Eggert ist im Addison-Wesley Verlag erschienen. 
+ * ISBN 978-3-8273-2994-3
+ * 
+ * @package    Application
+ * @author     Ralf Eggert <r.eggert@travello.de>
+ * @copyright  Alle Listings sind urheberrechtlich geschützt!
+ * @link       http://www.zendframeworkbuch.de/ und http://www.awl.de/2994
+ */
+
+/**
+ * Listing 14.1 view script
+ * 
+ * @package    Application
+ */
+?>
+<div class="row">
+<div class="span9">
+<h1>Listing 14.1</h1>
+<h3>HTTP-Anfragen senden und verarbeiten mit <code>Zend\Http\Client</code></h3>
+<pre>
+&lt;?php
+use Zend\Debug\Debug;
+use Zend\Http\Client;
+
+$client = new Client();
+$client->setUri('http://www.zendframeworkbuch.de/');
+$client->setMethod('POST');
+$client->setOptions(array(
+    'maxredirects' => 0,
+    'timeout'      => 10
+));
+$client->setParameterPost(array(
+    'pizza' => 'order',
+));
+
+$response = $client->send();
+
+Debug::dump($response->getHeaders()->toArray());
+Debug::dump($response->getStatusCode());
+Debug::dump($response->isOk());
+Debug::dump($response->isClientError());
+Debug::dump($response->getContent());
+</pre>
+<h3>Ausgabe</h3>
+<?php 
+use Zend\Debug\Debug;
+use Zend\Http\Client;
+
+$client = new Client();
+$client->setUri('http://www.zendframeworkbuch.de/');
+$client->setMethod('POST');
+$client->setOptions(array(
+    'maxredirects' => 0,
+    'timeout'      => 10
+));
+$client->setParameterPost(array(
+    'pizza' => 'order',
+));
+
+$response = $client->send();
+
+Debug::dump($response->getHeaders()->toArray());
+Debug::dump($response->getStatusCode());
+Debug::dump($response->isOk());
+Debug::dump($response->isClientError());
+Debug::dump($response->getContent());
+?>
+</div>
+</div>

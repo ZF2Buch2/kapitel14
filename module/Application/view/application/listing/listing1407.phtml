@@ -1,0 +1,51 @@
+<?php 
+/**
+ * ZF2 Buch Kapitel 14
+ * 
+ * Das Buch "Zend Framework 2 - Von den Grundlagen bis zur fertigen Anwendung"
+ * von Ralf Eggert ist im Addison-Wesley Verlag erschienen. 
+ * ISBN 978-3-8273-2994-3
+ * 
+ * @package    Application
+ * @author     Ralf Eggert <r.eggert@travello.de>
+ * @copyright  Alle Listings sind urheberrechtlich geschützt!
+ * @link       http://www.zendframeworkbuch.de/ und http://www.awl.de/2994
+ */
+
+/**
+ * Listing 14.7 view script
+ * 
+ * @package    Application
+ */
+?>
+<div class="row">
+<div class="span9">
+<h1>Listing 14.7</h1>
+<h3><code>Zend\XmlRpc\Client</code> ruft <code>Zend\XmlRpc\Server</code> auf</h3>
+<pre>
+&lt;?php
+use Zend\XmlRpc\Client;
+
+$url    = $this->serverUrl() . '/listing/listing1406';
+$client = new Client($url);
+
+Debug::dump($client->call('showPizzas'));
+Debug::dump($client->call('deliverPizza', array(2, 'Luigi')));
+Debug::dump($client->getIntrospector()->getMethodSignature('deliverPizza'));
+Debug::dump($client->getLastRequest());
+</pre>
+<h3>Ausgabe</h3>
+<?php
+use Zend\Debug\Debug;
+use Zend\XmlRpc\Client;
+
+$url    = $this->serverUrl() . '/listing/listing1406';
+$client = new Client($url);
+
+Debug::dump($client->call('showPizzas'));
+Debug::dump($client->call('deliverPizza', array(2, 'Luigi')));
+Debug::dump($client->getIntrospector()->getMethodSignature('deliverPizza'));
+Debug::dump($client->getLastRequest());
+?>
+</div>
+</div>

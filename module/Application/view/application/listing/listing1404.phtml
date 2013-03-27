@@ -1,0 +1,57 @@
+<?php 
+/**
+ * ZF2 Buch Kapitel 14
+ * 
+ * Das Buch 'Zend Framework 2 - Von den Grundlagen bis zur fertigen Anwendung'
+ * von Ralf Eggert ist im Addison-Wesley Verlag erschienen. 
+ * ISBN 978-3-8273-2994-3
+ * 
+ * @package    Application
+ * @author     Ralf Eggert <r.eggert@travello.de>
+ * @copyright  Alle Listings sind urheberrechtlich geschützt!
+ * @link       http://www.zendframeworkbuch.de/ und http://www.awl.de/2994
+ */
+
+/**
+ * Listing 14.4 view script
+ * 
+ * @package    Application
+ */
+?>
+<div class='row'>
+<div class='span9'>
+<h1>Listing 14.4</h1>
+<h3><code>Zend\Soap\Client</code> ruft <code>Zend\Soap\Server</code> auf</h3>
+<pre>
+&lt;?php
+use Zend\Debug\Debug;
+use Zend\Soap\Client;
+
+$url    = $this->serverUrl() . '/listing/listing1403?wdsl=show';
+$client = new Client($url);
+
+Debug::dump($client->showPizzas());
+Debug::dump($client->deliverPizza(1, 'Luigi'));
+Debug::dump($client->getFunctions());
+Debug::dump($client->getOptions());
+Debug::dump($client->getLastMethod());
+</pre>
+<h3>Ausgabe</h3>
+<?php 
+
+use Zend\Debug\Debug;
+use Zend\Soap\Client;
+
+ini_set("soap.wsdl_cache_enabled", 0);
+
+$url    = $this->serverUrl() . '/listing/listing1403?wdsl=show';
+$client = new Client($url);
+
+Debug::dump($client->showPizzas());
+Debug::dump($client->deliverPizza(1, 'Luigi'));
+Debug::dump($client->getFunctions());
+Debug::dump($client->getOptions());
+Debug::dump($client->getLastMethod());
+?>
+</div>
+</div>
